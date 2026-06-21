@@ -28,6 +28,7 @@ class BowlingService:
         self.joins = joins
 
     def save_ball(self, ball_id: int | None, form: dict[str, str]) -> int:
+        """화면 문자열을 DB 타입으로 변환하고 신규 등록과 수정을 구분한다."""
         if not form["name"].strip():
             raise ValueError("볼링공 이름을 입력하세요.")
         try:
@@ -53,6 +54,7 @@ class BowlingService:
         return ball_id
 
     def save_game(self, form: dict[str, str]) -> int:
+        """경기 입력값을 검증한 뒤 경기와 사용 공 관계의 동시 저장을 요청한다."""
         required = ["lane_id", "ball_id", "played_date", "score"]
         if any(not form[key] for key in required):
             raise ValueError("날짜, 레인, 볼링공, 점수는 반드시 입력하세요.")
@@ -91,4 +93,3 @@ class BowlingService:
                 "reaction_note": form["reaction_note"].strip(),
             },
         )
-

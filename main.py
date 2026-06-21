@@ -60,6 +60,8 @@ def dropdown(label: str, options: list[ft.DropdownOption], value: str | None = N
 
 
 class BowlingTrackerApp:
+    """Flet 화면을 조립하고 사용자 이벤트를 Service와 Repository에 연결한다."""
+
     def __init__(self, page: ft.Page):
         self.page = page
         self.db = Database()
@@ -85,6 +87,7 @@ class BowlingTrackerApp:
         self.show_view(0)
 
     def configure_page(self):
+        """한국어 스포츠 대시보드에 공통으로 적용할 테마와 창 속성을 설정한다."""
         self.page.title = "투핸드 볼링 트래커"
         self.page.theme_mode = ft.ThemeMode.DARK
         self.page.bgcolor = BG
@@ -96,6 +99,7 @@ class BowlingTrackerApp:
         )
 
     def build_shell(self):
+        """고정 NavigationRail과 화면이 교체되는 콘텐츠 영역을 구성한다."""
         destinations = [
             (ft.Icons.HOME_OUTLINED, ft.Icons.HOME, "대시보드"),
             (ft.Icons.SPORTS_OUTLINED, ft.Icons.SPORTS, "볼링공 관리"),
@@ -161,6 +165,7 @@ class BowlingTrackerApp:
         )
 
     def show_view(self, index: int):
+        """선택한 메뉴의 화면만 다시 만들어 최신 DB 상태를 반영한다."""
         self.selected_view = index
         self.rail.selected_index = index
         views = [self.dashboard_view, self.ball_view, self.game_form_view, self.join_view]
@@ -213,6 +218,7 @@ class BowlingTrackerApp:
         )
 
     def dashboard_view(self) -> ft.Control:
+        """집계값, 최근 JOIN 결과, 테이블 행 수를 첫 화면에 요약한다."""
         summary = self.join_repo.summary()
         recent = self.join_repo.find_all()[:4]
         stat_cards = ft.ResponsiveRow(
@@ -327,6 +333,7 @@ class BowlingTrackerApp:
         )
 
     def ball_view(self) -> ft.Control:
+        """볼링공 검색 입력과 이미지 카드 목록을 표시한다."""
         keyword = text_field("이름 또는 재질 검색", width=320, prefix_icon=ft.Icons.SEARCH)
         cards = ft.ResponsiveRow(spacing=14, run_spacing=14)
 
@@ -411,6 +418,7 @@ class BowlingTrackerApp:
         )
 
     def open_ball_dialog(self, ball: BowlingBall | None):
+        """ball 값의 유무에 따라 등록 또는 수정 다이얼로그를 연다."""
         name = text_field("볼링공 이름", ball.name if ball else "")
         weight = text_field("무게(lb)", str(ball.weight_lbs) if ball else "15")
         cover = text_field("커버스톡(겉면 재질)", ball.coverstock if ball else "하이브리드 리액티브")
@@ -486,6 +494,7 @@ class BowlingTrackerApp:
             self.notify(str(exc), error=True)
 
     def game_form_view(self) -> ft.Control:
+        """경기와 사용 공 관계를 한 번에 입력하는 Flet 폼을 구성한다."""
         lanes = self.lane_repo.find_all()
         balls = self.ball_repo.find_all()
         played = text_field("경기 날짜", date.today().isoformat(), width=220)
@@ -588,6 +597,7 @@ class BowlingTrackerApp:
         )
 
     def join_view(self) -> ft.Control:
+        """5개 테이블 LEFT JOIN 결과를 검색 가능한 카드 목록으로 출력한다."""
         keyword = text_field("날짜·볼링장·볼링공 검색", width=330, prefix_icon=ft.Icons.SEARCH)
         body = ft.Column(spacing=12)
 
@@ -688,6 +698,7 @@ class BowlingTrackerApp:
         )
 
     def open_game_edit_dialog(self, row: dict):
+        """기존 JOIN 결과를 이용해 점수와 메모 수정 창을 연다."""
         score = text_field("점수", str(row["score"]))
         memo = text_field("경기 메모", row["memo"] or "", multiline=True, min_lines=3)
         dialog = ft.AlertDialog(
@@ -732,6 +743,7 @@ class BowlingTrackerApp:
         self.page.update()
 
     def notify(self, message: str, error: bool = False):
+        """성공과 오류를 색상으로 구분한 SnackBar를 표시한다."""
         self.page.show_dialog(
             ft.SnackBar(
                 content=ft.Text(message),
@@ -753,4 +765,3 @@ if __name__ == "__main__":
         port=8550,
         assets_dir=str(BASE_DIR),
     )
-

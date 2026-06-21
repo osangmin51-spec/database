@@ -7,6 +7,7 @@ from database import Database
 
 @dataclass
 class BowlingBall:
+    """bowling_ball 조회 결과를 UI에서 이름으로 접근하기 위한 데이터 객체."""
     ball_id: int
     name: str
     weight_lbs: int
@@ -17,10 +18,12 @@ class BowlingBall:
 
 
 class BowlingCenterRepository:
+    """볼링장 기준정보의 조회 책임을 가진다."""
     def __init__(self, db: Database):
         self.db = db
 
     def find_all(self) -> list[dict[str, Any]]:
+        """경기 입력 Dropdown에 사용할 전체 볼링장 목록을 반환한다."""
         with self.db.connection() as con:
             rows = con.execute(
                 "SELECT center_id, name, region, lane_count FROM bowling_center ORDER BY name"
@@ -29,10 +32,12 @@ class BowlingCenterRepository:
 
 
 class LaneConditionRepository:
+    """레인 상태와 소속 볼링장 이름을 함께 조회한다."""
     def __init__(self, db: Database):
         self.db = db
 
     def find_all(self) -> list[dict[str, Any]]:
+        """사용자가 레인 조건을 알아볼 수 있도록 볼링장 정보를 JOIN한다."""
         sql = """
             SELECT l.lane_id, l.center_id, c.name AS center_name, l.oil_pattern,
                    l.oil_length, l.difficulty, l.surface_type
@@ -48,10 +53,12 @@ class LaneConditionRepository:
 
 
 class BowlingBallRepository:
+    """이미지 경로를 포함한 보유 볼링공 CRUD를 담당한다."""
     def __init__(self, db: Database):
         self.db = db
 
     def find_all(self, keyword: str = "") -> list[BowlingBall]:
+        """이름과 커버스톡을 하나의 검색어로 부분 검색한다."""
         sql = """
             SELECT ball_id, name, weight_lbs, coverstock, surface_finish,
                    hook_potential, image_path
@@ -75,6 +82,7 @@ class BowlingBallRepository:
         return BowlingBall(*row) if row else None
 
     def insert(self, data: dict[str, Any]) -> int:
+        """DuckDB에서 사용할 새 PK를 계산하고 이미지 경로와 장비 정보를 저장한다."""
         with self.db.connection() as con:
             next_id = con.execute("SELECT COALESCE(MAX(ball_id), 0) + 1 FROM bowling_ball").fetchone()[0]
             con.execute(
@@ -94,6 +102,7 @@ class BowlingBallRepository:
         return next_id
 
     def update(self, ball_id: int, data: dict[str, Any]):
+        """카드 수정 다이얼로그에서 전달된 모든 장비 속성을 갱신한다."""
         with self.db.connection() as con:
             con.execute(
                 """UPDATE bowling_ball
@@ -112,6 +121,7 @@ class BowlingBallRepository:
             )
 
     def delete(self, ball_id: int):
+        """경기에 사용된 공은 FK 의미를 보존하기 위해 삭제하지 않는다."""
         with self.db.connection() as con:
             used = con.execute("SELECT COUNT(*) FROM game_ball WHERE ball_id = ?", [ball_id]).fetchone()[0]
             if used:
@@ -120,6 +130,7 @@ class BowlingBallRepository:
 
 
 class GameRecordRepository:
+    """경기 본문과 경기-볼링공 관계의 원자적 저장 및 변경을 담당한다."""
     def __init__(self, db: Database):
         self.db = db
 
@@ -168,6 +179,7 @@ class GameRecordRepository:
                 raise
 
     def update_score(self, game_id: int, score: int, memo: str):
+        """통합 조회 화면에서 자주 수정하는 점수와 메모만 갱신한다."""
         with self.db.connection() as con:
             con.execute(
                 "UPDATE game_record SET score = ?, memo = ? WHERE game_id = ?",
@@ -175,6 +187,7 @@ class GameRecordRepository:
             )
 
     def delete(self, game_id: int):
+        """관계 행과 경기 행을 삭제하고 실패 시 관계 행을 복구한다."""
         # DuckDB 1.5.x는 같은 트랜잭션에서 자식 행을 삭제한 직후 부모 행을
         # 삭제할 때 FK 인덱스가 즉시 갱신되지 않는 제한이 있다. 따라서 자식
         # 관계를 먼저 확정하고 부모를 삭제하되, 실패하면 관계 행을 복구한다.
@@ -242,6 +255,7 @@ class GameJoinRepository:
         self.db = db
 
     def find_all(self, keyword: str = "") -> list[dict[str, Any]]:
+        """날짜·볼링장·볼링공 검색어를 5개 테이블 LEFT JOIN에 적용한다."""
         pattern = f"%{keyword.strip()}%"
         with self.db.connection() as con:
             cur = con.execute(self.JOIN_SQL, [pattern, pattern, pattern])
@@ -250,6 +264,7 @@ class GameJoinRepository:
         return [dict(zip(columns, row)) for row in rows]
 
     def summary(self) -> dict[str, float | int]:
+        """대시보드용 경기 수, 평균, 최고 점수, 스트라이크 합계를 계산한다."""
         with self.db.connection() as con:
             row = con.execute(
                 """SELECT COUNT(*), COALESCE(ROUND(AVG(score), 1), 0),

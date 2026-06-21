@@ -18,6 +18,7 @@ class Database:
 
     @contextmanager
     def connection(self):
+        """요청 단위로 연결을 열고 사용 후 반드시 닫아 파일 잠금을 줄인다."""
         con = duckdb.connect(str(self.db_path))
         try:
             yield con
@@ -33,6 +34,7 @@ class Database:
             con.execute(seed_sql)
 
     def table_counts(self) -> dict[str, int]:
+        """대시보드에서 초기화 상태를 확인할 수 있도록 테이블별 행 수를 반환한다."""
         tables = [
             "bowling_center",
             "lane_condition",
@@ -42,4 +44,3 @@ class Database:
         ]
         with self.connection() as con:
             return {table: con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0] for table in tables}
-
