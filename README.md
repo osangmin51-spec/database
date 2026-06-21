@@ -76,10 +76,6 @@ LEFT JOIN bowling_ball b ON b.ball_id = gb.ball_id
 
 수업 예제의 pandas DataFrame과 여러 DBMS Repository 교체 기능은 현재 요구사항에 필요하지 않아 억지로 추가하지 않았습니다. 실제 구현 범위와 설계상의 확장 가능성을 구분해 기록했습니다.
 
-## 최종 보고서
-
-- [데이터베이스 Term Project 최종 결과 보고서](docs/report/final-report.docx)
-- 보고서에는 Use Case, UI Design, Crow's feet ERD, SQL DDL, BCNF 정규화, Sequence Diagram, Repository Interface 설계, 구현 코드와 실행 증빙을 포함했습니다.
 
 ## 사용 기술
 
@@ -88,10 +84,3 @@ LEFT JOIN bowling_ball b ON b.ball_id = gb.ball_id
 - DuckDB 1.5.4
 - Pillow 12.2.0
 
-## 수업 자료
-
-- [아키텍처 설계](https://nano5.notion.site/355daf211d42807e8f60ca7eca521f69)
-- [설계서 작성](https://nano5.notion.site/365daf211d4280dcbd33eb1645b30a4f)
-- [ERD와 정규화](https://nano5.notion.site/ERD-318daf211d42812c901dfea36b4b03a0)
-- [DuckDB](https://nano5.notion.site/DuckDB-350daf211d4280189a1ecaa5ca2da47b)
-- [Flet](https://nano5.notion.site/Flet-34fdaf211d428077aec0f5d2cff2c1a9?v=318daf211d42814d9beb000c97572fd2)
