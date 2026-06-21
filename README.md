@@ -58,31 +58,6 @@ LEFT JOIN game_ball gb ON gb.game_id = g.game_id
 LEFT JOIN bowling_ball b ON b.ball_id = gb.ball_id
 ```
 
-## 실행 방법
-
-Python 3.11 이상 환경을 권장합니다.
-
-```powershell
-python -m pip install -r requirements.txt
-python make_assets.py
-python main.py
-```
-
-실행 후 브라우저에서 `http://127.0.0.1:8550`에 접속합니다. DuckDB 파일과 초기 데이터는 첫 실행 시 `data/bowling_tracker.duckdb`에 생성됩니다.
-
-## 테스트
-
-```powershell
-python -m unittest discover -s tests -v
-```
-
-테스트는 다음 항목을 확인합니다.
-
-- 5개 테이블 생성 및 초기 데이터 삽입
-- 볼링공 CRUD와 이미지 경로 저장
-- 경기와 사용 공 관계의 트랜잭션 저장
-- 5개 테이블 LEFT JOIN 결과
-- 경기 점수 수정과 관계 데이터를 포함한 삭제
 
 ## 사용 기술
 
@@ -90,7 +65,3 @@ python -m unittest discover -s tests -v
 - Flet 0.85.3
 - DuckDB 1.5.4
 - Pillow 12.2.0
-
-## Repository
-
-https://github.com/osangmin51-spec/database
