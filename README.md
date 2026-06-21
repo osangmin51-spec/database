@@ -36,9 +36,13 @@ Flet과 DuckDB로 구현한 개인용 투핸드 볼링 경기·장비 기록 애
 - `seed.sql`: 볼링장·레인·볼링공·경기 초기 데이터
 - `tests/test_repositories.py`: Repository와 DuckDB 통합 테스트
 
+화면에서 발생한 이벤트는 Flet Page가 받고 Service가 입력값과 Use Case 흐름을 처리한 뒤 Repository가 DuckDB에 접근합니다. Repository 객체는 Service 생성자에 전달하여 화면 코드와 SQL 코드가 직접 결합되지 않도록 구성했습니다. 이번 과제는 DuckDB 사용이 명확하므로 여러 DBMS를 동적으로 교체하는 구조는 추가하지 않았습니다.
+
 ## 데이터베이스 설계
 
 ![Crow's feet ERD](docs/screenshots/erd.png)
+
+ERD는 수업에서 사용한 VSCode ERD Editor로 작성했으며, Crow's feet 표기법으로 필수 참여와 일대다 관계를 나타냈습니다. 편집 가능한 원본은 [`docs/design/two_hand_bowling_tracker.erd`](docs/design/two_hand_bowling_tracker.erd)입니다.
 
 | 테이블 | 구분 | 역할 |
 |---|---|---|
@@ -58,6 +62,24 @@ LEFT JOIN game_ball gb ON gb.game_id = g.game_id
 LEFT JOIN bowling_ball b ON b.ball_id = gb.ball_id
 ```
 
+각 테이블은 원자값만 저장하도록 1NF를 만족시키고, 복합키를 사용하는 `game_ball`에는 키 전체에 종속되는 속성만 두었습니다. 볼링장, 레인 상태, 볼링공과 경기 기록을 분리하여 부분 함수 종속과 이행 함수 종속을 제거했으며, 모든 결정자가 후보키가 되도록 BCNF까지 검토했습니다.
+
+## 수업 내용 반영
+
+| 수업 주제 | 프로젝트 적용 내용 |
+|---|---|
+| Use Case와 Sequence Diagram | 사용자 관점의 5개 기능을 정의하고 Page-Service-Repository-DuckDB 흐름으로 대응 |
+| Repository 설계 | 테이블 CRUD와 5개 테이블 JOIN 책임을 Repository 계층에 분리 |
+| VSCode ERD Editor | 편집 가능한 `.erd` 원본과 Crow's feet ERD 제공 |
+| DuckDB | 파일 기반 DB 연결, `execute()`, `?` Parameter Binding, 트랜잭션 사용 |
+| Flet | `Page`, `Row`, `Column`, `Container`, 입력 컨트롤, 이벤트와 `page.update()` 사용 |
+
+수업 예제의 pandas DataFrame과 여러 DBMS Repository 교체 기능은 현재 요구사항에 필요하지 않아 억지로 추가하지 않았습니다. 실제 구현 범위와 설계상의 확장 가능성을 구분해 기록했습니다.
+
+## 최종 보고서
+
+- [데이터베이스 Term Project 최종 결과 보고서](docs/report/final-report.docx)
+- 보고서에는 Use Case, UI Design, Crow's feet ERD, SQL DDL, BCNF 정규화, Sequence Diagram, Repository Interface 설계, 구현 코드와 실행 증빙을 포함했습니다.
 
 ## 사용 기술
 
@@ -65,3 +87,11 @@ LEFT JOIN bowling_ball b ON b.ball_id = gb.ball_id
 - Flet 0.85.3
 - DuckDB 1.5.4
 - Pillow 12.2.0
+
+## 수업 자료
+
+- [아키텍처 설계](https://nano5.notion.site/355daf211d42807e8f60ca7eca521f69)
+- [설계서 작성](https://nano5.notion.site/365daf211d4280dcbd33eb1645b30a4f)
+- [ERD와 정규화](https://nano5.notion.site/ERD-318daf211d42812c901dfea36b4b03a0)
+- [DuckDB](https://nano5.notion.site/DuckDB-350daf211d4280189a1ecaa5ca2da47b)
+- [Flet](https://nano5.notion.site/Flet-34fdaf211d428077aec0f5d2cff2c1a9?v=318daf211d42814d9beb000c97572fd2)

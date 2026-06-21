@@ -1,0 +1,1039 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 1250,
+    "height": 850,
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 0.9,
+    "show": 132,
+    "database": 16,
+    "databaseName": "two_hand_bowling_tracker",
+    "canvasType": "ERD",
+    "language": 16,
+    "tableNameCase": 8,
+    "columnNameCase": 8,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": 300,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "t_center",
+      "t_lane",
+      "t_game",
+      "t_game_ball",
+      "t_ball"
+    ],
+    "relationshipIds": [
+      "r_center_lane",
+      "r_lane_game",
+      "r_game_game_ball",
+      "r_ball_game_ball"
+    ],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "t_center": {
+        "id": "t_center",
+        "name": "bowling_center",
+        "comment": "볼링장 정보",
+        "columnIds": [
+          "c_center_id",
+          "c_center_name",
+          "c_region",
+          "c_lane_count"
+        ],
+        "seqColumnIds": [
+          "c_center_id",
+          "c_center_name",
+          "c_region",
+          "c_lane_count"
+        ],
+        "ui": {
+          "x": 25,
+          "y": 35,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 0,
+          "color": "#A8C7DA"
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "t_lane": {
+        "id": "t_lane",
+        "name": "lane_condition",
+        "comment": "레인 상태 정보",
+        "columnIds": [
+          "c_lane_id",
+          "c_lane_center_id",
+          "c_oil_pattern",
+          "c_oil_length",
+          "c_difficulty",
+          "c_surface_type"
+        ],
+        "seqColumnIds": [
+          "c_lane_id",
+          "c_lane_center_id",
+          "c_oil_pattern",
+          "c_oil_length",
+          "c_difficulty",
+          "c_surface_type"
+        ],
+        "ui": {
+          "x": 305,
+          "y": 35,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 0,
+          "color": "#A8C7DA"
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "t_game": {
+        "id": "t_game",
+        "name": "game_record",
+        "comment": "경기 기록",
+        "columnIds": [
+          "c_game_id",
+          "c_game_lane_id",
+          "c_played_date",
+          "c_score",
+          "c_strike_count",
+          "c_spare_count",
+          "c_open_frame_count",
+          "c_average_speed"
+        ],
+        "seqColumnIds": [
+          "c_game_id",
+          "c_game_lane_id",
+          "c_played_date",
+          "c_score",
+          "c_strike_count",
+          "c_spare_count",
+          "c_open_frame_count",
+          "c_average_speed"
+        ],
+        "ui": {
+          "x": 600,
+          "y": 35,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 0,
+          "color": "#A8C7DA"
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "t_game_ball": {
+        "id": "t_game_ball",
+        "name": "game_ball",
+        "comment": "경기별 사용 볼링공 관계",
+        "columnIds": [
+          "c_gb_game_id",
+          "c_gb_ball_id",
+          "c_usage_order",
+          "c_purpose",
+          "c_target_board",
+          "c_breakpoint_board"
+        ],
+        "seqColumnIds": [
+          "c_gb_game_id",
+          "c_gb_ball_id",
+          "c_usage_order",
+          "c_purpose",
+          "c_target_board",
+          "c_breakpoint_board"
+        ],
+        "ui": {
+          "x": 390,
+          "y": 430,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 0,
+          "color": "#A8C7DA"
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "t_ball": {
+        "id": "t_ball",
+        "name": "bowling_ball",
+        "comment": "볼링공 정보",
+        "columnIds": [
+          "c_ball_id",
+          "c_ball_name",
+          "c_weight_lbs",
+          "c_coverstock",
+          "c_surface_finish",
+          "c_hook_potential",
+          "c_image_path"
+        ],
+        "seqColumnIds": [
+          "c_ball_id",
+          "c_ball_name",
+          "c_weight_lbs",
+          "c_coverstock",
+          "c_surface_finish",
+          "c_hook_potential",
+          "c_image_path"
+        ],
+        "ui": {
+          "x": 760,
+          "y": 430,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 0,
+          "color": "#A8C7DA"
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "c_center_id": {
+        "id": "c_center_id",
+        "tableId": "t_center",
+        "name": "center_id",
+        "comment": "볼링장 ID",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_center_name": {
+        "id": "c_center_name",
+        "tableId": "t_center",
+        "name": "name",
+        "comment": "볼링장 이름",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_region": {
+        "id": "c_region",
+        "tableId": "t_center",
+        "name": "region",
+        "comment": "지역",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_lane_count": {
+        "id": "c_lane_count",
+        "tableId": "t_center",
+        "name": "lane_count",
+        "comment": "레인 수",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_center_memo": {
+        "id": "c_center_memo",
+        "tableId": "t_center",
+        "name": "memo",
+        "comment": "메모",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_lane_id": {
+        "id": "c_lane_id",
+        "tableId": "t_lane",
+        "name": "lane_id",
+        "comment": "레인 상태 ID",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_lane_center_id": {
+        "id": "c_lane_center_id",
+        "tableId": "t_lane",
+        "name": "center_id",
+        "comment": "볼링장 FK",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_oil_pattern": {
+        "id": "c_oil_pattern",
+        "tableId": "t_lane",
+        "name": "oil_pattern",
+        "comment": "오일 패턴",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_oil_length": {
+        "id": "c_oil_length",
+        "tableId": "t_lane",
+        "name": "oil_length",
+        "comment": "오일 길이",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_difficulty": {
+        "id": "c_difficulty",
+        "tableId": "t_lane",
+        "name": "difficulty",
+        "comment": "난이도",
+        "dataType": "VARCHAR(20)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_surface_type": {
+        "id": "c_surface_type",
+        "tableId": "t_lane",
+        "name": "surface_type",
+        "comment": "레인 표면",
+        "dataType": "VARCHAR(30)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_lane_memo": {
+        "id": "c_lane_memo",
+        "tableId": "t_lane",
+        "name": "memo",
+        "comment": "메모",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_game_id": {
+        "id": "c_game_id",
+        "tableId": "t_game",
+        "name": "game_id",
+        "comment": "경기 ID",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_game_lane_id": {
+        "id": "c_game_lane_id",
+        "tableId": "t_game",
+        "name": "lane_id",
+        "comment": "레인 상태 FK",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_played_date": {
+        "id": "c_played_date",
+        "tableId": "t_game",
+        "name": "played_date",
+        "comment": "경기 날짜",
+        "dataType": "DATE",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_score": {
+        "id": "c_score",
+        "tableId": "t_game",
+        "name": "score",
+        "comment": "점수",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_strike_count": {
+        "id": "c_strike_count",
+        "tableId": "t_game",
+        "name": "strike_count",
+        "comment": "스트라이크 수",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_spare_count": {
+        "id": "c_spare_count",
+        "tableId": "t_game",
+        "name": "spare_count",
+        "comment": "스페어 수",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_open_frame_count": {
+        "id": "c_open_frame_count",
+        "tableId": "t_game",
+        "name": "open_frame_count",
+        "comment": "오픈 프레임 수",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_average_speed": {
+        "id": "c_average_speed",
+        "tableId": "t_game",
+        "name": "average_speed_kmh",
+        "comment": "평균 구속",
+        "dataType": "DOUBLE",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_game_memo": {
+        "id": "c_game_memo",
+        "tableId": "t_game",
+        "name": "memo",
+        "comment": "메모",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_gb_game_id": {
+        "id": "c_gb_game_id",
+        "tableId": "t_game_ball",
+        "name": "game_id",
+        "comment": "경기 FK",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 3,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_gb_ball_id": {
+        "id": "c_gb_ball_id",
+        "tableId": "t_game_ball",
+        "name": "ball_id",
+        "comment": "볼링공 FK",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 3,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_usage_order": {
+        "id": "c_usage_order",
+        "tableId": "t_game_ball",
+        "name": "usage_order",
+        "comment": "사용 순서",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_purpose": {
+        "id": "c_purpose",
+        "tableId": "t_game_ball",
+        "name": "purpose",
+        "comment": "사용 목적",
+        "dataType": "VARCHAR(30)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_target_board": {
+        "id": "c_target_board",
+        "tableId": "t_game_ball",
+        "name": "target_board",
+        "comment": "조준 보드",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_breakpoint_board": {
+        "id": "c_breakpoint_board",
+        "tableId": "t_game_ball",
+        "name": "breakpoint_board",
+        "comment": "브레이크포인트 보드",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_reaction_note": {
+        "id": "c_reaction_note",
+        "tableId": "t_game_ball",
+        "name": "reaction_note",
+        "comment": "공 반응 메모",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_ball_id": {
+        "id": "c_ball_id",
+        "tableId": "t_ball",
+        "name": "ball_id",
+        "comment": "볼링공 ID",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_ball_name": {
+        "id": "c_ball_name",
+        "tableId": "t_ball",
+        "name": "name",
+        "comment": "볼링공 이름",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_weight_lbs": {
+        "id": "c_weight_lbs",
+        "tableId": "t_ball",
+        "name": "weight_lbs",
+        "comment": "무게(lb)",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_coverstock": {
+        "id": "c_coverstock",
+        "tableId": "t_ball",
+        "name": "coverstock",
+        "comment": "커버스톡",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_surface_finish": {
+        "id": "c_surface_finish",
+        "tableId": "t_ball",
+        "name": "surface_finish",
+        "comment": "표면 처리",
+        "dataType": "VARCHAR(50)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_hook_potential": {
+        "id": "c_hook_potential",
+        "tableId": "t_ball",
+        "name": "hook_potential",
+        "comment": "훅 성향",
+        "dataType": "VARCHAR(30)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "c_image_path": {
+        "id": "c_image_path",
+        "tableId": "t_ball",
+        "name": "image_path",
+        "comment": "이미지 경로",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 122,
+          "widthComment": 0,
+          "widthDataType": 72,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      }
+    },
+    "relationshipEntities": {
+      "r_center_lane": {
+        "id": "r_center_lane",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "t_center",
+          "columnIds": [
+            "c_center_id"
+          ],
+          "x": 285,
+          "y": 150,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "t_lane",
+          "columnIds": [
+            "c_lane_center_id"
+          ],
+          "x": 305,
+          "y": 150,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "r_lane_game": {
+        "id": "r_lane_game",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "t_lane",
+          "columnIds": [
+            "c_lane_id"
+          ],
+          "x": 565,
+          "y": 170,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "t_game",
+          "columnIds": [
+            "c_game_lane_id"
+          ],
+          "x": 600,
+          "y": 165,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "r_game_game_ball": {
+        "id": "r_game_game_ball",
+        "identification": true,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "t_game",
+          "columnIds": [
+            "c_game_id"
+          ],
+          "x": 705,
+          "y": 365,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "t_game_ball",
+          "columnIds": [
+            "c_gb_game_id"
+          ],
+          "x": 520,
+          "y": 430,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      },
+      "r_ball_game_ball": {
+        "id": "r_ball_game_ball",
+        "identification": true,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "t_ball",
+          "columnIds": [
+            "c_ball_id"
+          ],
+          "x": 760,
+          "y": 555,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "t_game_ball",
+          "columnIds": [
+            "c_gb_ball_id"
+          ],
+          "x": 645,
+          "y": 555,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1780000000000,
+          "createAt": 1780000000000
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}
